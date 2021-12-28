@@ -1,6 +1,6 @@
 # Fullstack EchoBot Assignment
 
-Here is the Fullstack Chatbot which includes two things 
+Here is the Fullstack Chatbot which includes two main things 
  1. Room without echo
  2. Room with echo
 
@@ -14,6 +14,17 @@ The backend is an API that contains the logic for the Chatbot. It allows one to 
 
 I am using socket.io and express.
 Using Nodes.js as language.
+
+### Steps to run the code 
+
+## Step 1 : Install node modules using below command
+### `npm install`
+
+## Step 2 : Run the script with below command
+### `npm start`     
+The reason you can use npm start is because if you look inside of their package.json file you'll see a "start" option under "scripts". That command will execute when you type npm start
+
+### `Server is up and running`  
 
 
 ### Frontend
@@ -32,9 +43,18 @@ You can see below components:
     - a **send button** allowing users to send the message to the Room
     - a **list of messages**, printing historical messages from all users in the room and also echo message.
 
+### Steps to run the code 
+
+## Step 1 : Install node modules using below command
+### `npm install`
+
+## Step 2 : Run the script with below command
+### `npm start`     
+The reason you can use npm start is because if you look inside of their package.json file you'll see a "start" option under "scripts". That command will execute when you type npm start
+
+### `It will open localhost:3000 in browser` 
 
 
-### Instrution to run the project 
-Please refer README.md file inside client and server folders.
+
 
 
