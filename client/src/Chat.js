@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 
-function Chat({ socket, username, room }) {
+function Chat({ socket, username, room , showChat,isEcho }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
@@ -11,20 +11,31 @@ function Chat({ socket, username, room }) {
         room: room,
         author: username,
         message: currentMessage,
+        socketId:socket.id,
         time:
           new Date(Date.now()).getHours() +
           ":" +
           new Date(Date.now()).getMinutes(),
       };
-
-      await socket.emit("send_message", messageData);
+      // await socket.emit("message", messageData);
+      if(isEcho){
+        await socket.emit("echo_message",messageData);
+      }
+      else{
+        await socket.emit("send_message", messageData);
+      }
+     
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage("");
     }
   };
+  
 
+ 
   useEffect(() => {
-    socket.on("receive_message", (data) => {
+    // console.log("messageList",messageList);
+    console.log("data",socket);
+    socket.on("receive_message", (data) => {                           // get message from other user in same room
       setMessageList((list) => [...list, data]);
     });
   }, [socket]);
@@ -40,7 +51,9 @@ function Chat({ socket, username, room }) {
             return (
               <div
                 className="message"
-                id={username === messageContent.author ? "you" : "other"}
+                id={(username === messageContent.author) 
+                  // &&(socket.id !== messageContent.socketId)
+                   ? "you" : "other"}
               >
                 <div>
                   <div className="message-content">
@@ -70,6 +83,7 @@ function Chat({ socket, username, room }) {
         />
         <button onClick={sendMessage}>&#9658;</button>
       </div>
+     
     </div>
   );
 }

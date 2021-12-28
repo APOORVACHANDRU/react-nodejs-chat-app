@@ -9,10 +9,20 @@ function App() {
   const [username, setUsername] = useState("");
   const [room, setRoom] = useState("");
   const [showChat, setShowChat] = useState(false);
+  const [isEcho,setIsEcho] = useState(false);
 
   const joinRoom = () => {
     if (username !== "" && room !== "") {
       socket.emit("join_room", room);
+
+      setShowChat(true);
+    }
+  };
+  
+  const joinEchoRoom = () => {
+    if (username !== "" && room !== "") {
+      socket.emit("join_room", room);
+      setIsEcho(true);
       setShowChat(true);
     }
   };
@@ -37,9 +47,10 @@ function App() {
             }}
           />
           <button onClick={joinRoom}>Join A Room</button>
+          <button onClick={joinEchoRoom}>Join Echo Room</button>
         </div>
       ) : (
-        <Chat socket={socket} username={username} room={room} />
+        <Chat socket={socket} username={username} room={room} showChat={showChat} isEcho={isEcho}/>
       )}
     </div>
   );
