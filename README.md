@@ -1,4 +1,4 @@
-# Fullstack EchoBot Assignment
+# Fullstack EchoBot and InterpolateSession Assignment
 
 Here is the Fullstack Chatbot which includes two main things 
  1. Room without echo
@@ -53,6 +53,11 @@ You can see below components:
 The reason you can use npm start is because if you look inside of their package.json file you'll see a "start" option under "scripts". That command will execute when you type npm start
 
 ### `It will open localhost:3000 in browser` 
+
+
+#### Interpolate Session
+
+I have added extra testcases as well in the separate file interpolate.test.js please check 
 
 
 
