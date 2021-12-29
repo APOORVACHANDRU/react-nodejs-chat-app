@@ -34,7 +34,10 @@ function Chat({ socket, username, room , showChat,isEcho }) {
  
   useEffect(() => {
     // console.log("messageList",messageList);
-    console.log("data",socket);
+    // console.log("data",socket);
+   
+  
+   
     socket.on("receive_message", (data) => {                           // get message from other user in same room
       setMessageList((list) => [...list, data]);
     });
