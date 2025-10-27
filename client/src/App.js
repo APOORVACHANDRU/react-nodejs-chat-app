@@ -26,6 +26,13 @@ function App() {
       setShowChat(true);
     }
   };
+
+  const leaveRoom = ()=>{
+    setRoom("");
+    setUsername("");
+    setIsEcho(false);
+    setShowChat(false);
+  }
  
   return (
     <div className="App">
@@ -50,7 +57,7 @@ function App() {
           <button onClick={joinEchoRoom}>Join Echo Room</button>
         </div>
       ) : (
-        <Chat socket={socket} username={username} room={room} showChat={showChat} isEcho={isEcho}/>
+        <Chat socket={socket} username={username} room={room} showChat={showChat} isEcho={isEcho} leaveRoom={leaveRoom}/>
       )}
     </div>
   );

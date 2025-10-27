@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import "./App.css";
 
-function Chat({ socket, username, room , showChat,isEcho }) {
+function Chat({ socket, username, room , showChat,isEcho ,leaveRoom}) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
 
@@ -29,14 +30,17 @@ function Chat({ socket, username, room , showChat,isEcho }) {
       setCurrentMessage("");
     }
   };
-  
+  const EndChat = ()=>{
+      socket.emit("leave_room",room);
+      socket.off("receive_message");
+      socket.removeAllListeners();
+      leaveRoom();
+  } 
 
  
   useEffect(() => {
     // console.log("messageList",messageList);
     // console.log("data",socket);
-   
-  
    
     socket.on("receive_message", (data) => {                           // get message from other user in same room
       setMessageList((list) => [...list, data]);
@@ -85,6 +89,9 @@ function Chat({ socket, username, room , showChat,isEcho }) {
           }}
         />
         <button onClick={sendMessage}>&#9658;</button>
+      </div>
+      <div className="joinChatContainer">
+         <button onClick={EndChat}>Leave Chat</button>
       </div>
      
     </div>

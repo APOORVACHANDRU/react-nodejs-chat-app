@@ -26,7 +26,7 @@ io.on("connection", (socket) => {
   //  socket.to("some room").emit("some event"); use to or in (they are the same) when broadcasting or emitting
   socket.on("send_message", (data) => {
     socket.to(data.room)
-    .emit("receive_message", data);          
+    .emit("receive_message", data);        
   });                                 
 
  
@@ -34,7 +34,7 @@ io.on("connection", (socket) => {
   // send to ALL users in that room including sender
   socket.on('echo_message', (data)=> {
     io.to(data.room)                                      
-    .emit("receive_message", data); 
+    .emit("receive_message", data);  
   });  
 
   socket.on("disconnect", () => {
