@@ -1,4 +1,4 @@
-# Fullstack EchoBot and InterpolateSession Assignment
+# Fullstack EchoBot and InterpolateSession
 
 Here is the Fullstack Chatbot which includes two main things 
  1. Room without echo
